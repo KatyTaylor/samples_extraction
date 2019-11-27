@@ -44,14 +44,14 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.pmb_uri = ENV.fetch('SE_PMB_URI','http://localhost:10000/v1')
+  config.pmb_uri = ENV.fetch('SE_PMB_URI','http://production.psd.sanger.ac.uk:7462/v1/')
   config.redis_url = ENV.fetch('SE_REDIS_URI', 'redis://127.0.0.1:6379')
   config.ss_uri =  ENV.fetch('SE_SS_URI', 'http://localhost:3000/api/1/')
   config.ss_api_v2_uri = ENV.fetch('SE_SS_API_V2_URI', 'http://localhost:3000')
   config.ss_authorisation =  'development'
   config.searcher_name_by_barcode = 'Find assets by barcode'
   config.searcher_study_by_name = 'Find study by name'
-  config.printing_disabled = true
+  config.printing_disabled = false
   config.redis_enabled=true
 
   config.inference_engine = :default

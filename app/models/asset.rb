@@ -96,7 +96,7 @@ class Asset < ActiveRecord::Base
   def build_barcode(index)
     self.barcode = SBCF::SangerBarcode.new({
       prefix: Rails.application.config.barcode_prefix,
-      number: index
+      number: index + 100000
     }).human_barcode
   end
 
@@ -106,7 +106,7 @@ class Asset < ActiveRecord::Base
       update_attributes({
         barcode: SBCF::SangerBarcode.new({
           prefix: Rails.application.config.barcode_prefix,
-          number: self.id
+          number: self.id + 100000
           }).human_barcode
         }
       )
@@ -189,9 +189,14 @@ class Asset < ActiveRecord::Base
       :barcode => barcode,
       :barcode2d => barcode,
       :top_line => barcode,
+      :middle_line => kit_type,
       :bottom_line => info_line
       }
     }
+  end
+
+  def kit_type
+    activities_affected&.last&.kit&.kit_type&.abbreviation
   end
 
   def position_value
